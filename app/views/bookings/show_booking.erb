@@ -1,0 +1,15 @@
+<div class="span3 offset2">
+	<form method="get" action="/properties/<%=@booking.property.id%>">
+		<button type="submit" class="btn btn-default" >Home</button>
+	</form>
+</div>
+<hr>
+		<% if logged_in? && current_user.id == @booking.user.id %>
+
+		<br><%=@booking.booking_date %>
+		<br><%=@booking.booking_detail %>
+		<br>booking made by: <%=@booking.user.name %>
+
+		<% end %>
+
+

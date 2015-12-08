@@ -1,0 +1,16 @@
+<h2>Edit Your Property Here!</h2>
+
+<form method="post" action="/properties/<%=@property.id %>/update">
+	<input name="_method" type="hidden" value="put" />
+
+	<textarea class="form-control" rows="5"  name="property[property_description]"><%=@property.property_description %></textarea>
+	<input type="text" class="form-control" value="<%=@property.rental%>" name="property[rental]">
+
+	<button type="submit" class="btn btn-default">change</button>
+
+</form>
+
+<% if @property &&  @property.errors.full_messages.each do |error|%>
+<%= error %>
+	<% end %>
+<% end %>

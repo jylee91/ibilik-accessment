@@ -1,0 +1,18 @@
+<h2>Edit Your Booking Details Here!</h2>
+
+<form method="post" action="/bookings/<%=@booking.id %>/update">
+	<input name="_method" type="hidden" value="put" />
+
+	<input type="date" class="form-control"value=<%=@booking.booking_date%> name="booking[booking_date]">
+
+	<textarea class="form-control" rows="5"  name="booking[booking_detail"><%=@booking.booking_detail %></textarea>
+	
+
+	<button type="submit" class="btn btn-default">change</button>
+
+</form>
+
+<% if @booking &&  @booking.errors.full_messages.each do |error|%>
+<%= error %>
+	<% end %>
+<% end %>

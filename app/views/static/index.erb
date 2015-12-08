@@ -1,0 +1,47 @@
+<h1>Welcome to Ibilik</h1>
+
+<div>
+	<% if logged_in? %>
+		<br><h3>Welcome</h3>
+		<br><a href="/users/<%= current_user.id %>"><h3><%= current_user.name %></a></h3>
+
+		<br><a href="/properties/new">Post a Room</a>
+
+			<form method="post" action="/logout">
+				<button type="submit" class="btn btn-default" >Logout</button>
+				<input name="_method" type="hidden" value="delete" />
+			</form>
+		
+		<hr>
+
+	
+
+	<% else %>
+		<a href="/signup">signup</a>
+		<a href="/login">login</a>
+		<%=@signup_succ if @signup_succ %>
+	<% end %> <!-- logged_in end -->
+</div>
+
+	<% @properties.order(created_at: :desc).each do |property| %>
+	
+			<a href="/properties/<%=property.id %>">
+				<p><%=property.property_description %> : <%=property.rental %></p>
+			
+			</a>
+			<%=property.created_at %>
+
+			created by: <%=property.user.name %>
+		
+			<div>
+				<% if logged_in? && current_user.id == property.user.id %> <!-- if 1 -->
+					<a href="/properties/<%=property.id %>/edit"><p>edit</p></a>
+					<form method="post" action="/properties/<%=property.id %>/delete">
+						<button type="submit" class="btn btn-default" >delete</button>
+				 		<input name="_method" type="hidden" value="delete" />
+
+					</form>
+					<hr>
+			<% end %> <!-- end if 1 -->
+
+	<% end %> <!-- @properties end -->

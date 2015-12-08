@@ -1,0 +1,16 @@
+<h2>Enter Your Property Details Here!</h2>
+
+<form method="post" action ="/properties" >
+
+	<textarea class="form-control" rows="5" placeholder="your room detail" name="property[property_description]"></textarea>
+
+	<input type="text" class="form-control"placeholder="rental" name="property[rental]">
+
+	<button type="submit" class="btn btn-default">submit</button>
+
+</form>
+
+<% if @property &&  @property.errors.full_messages.each do |error|%>
+<br><%= error %>
+	<% end %>
+<% end %>
